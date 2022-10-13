@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.methods.generateJwtToken = function () {
-  return jwt.sign({ user : this._toString()},"ZomatoApp");
+  return jwt.sign({ user : this.toString()},"ZomatoApp");
 };
 
 

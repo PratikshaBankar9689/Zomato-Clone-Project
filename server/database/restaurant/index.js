@@ -35,12 +35,3 @@ const RestaurantSchema = new mongoose.Schema(
 );
 
 export const RestaurantModel = mongoose.model("restaurants", RestaurantSchema);
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact 
