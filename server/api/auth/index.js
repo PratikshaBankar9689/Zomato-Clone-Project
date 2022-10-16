@@ -26,13 +26,13 @@ Router.post("/signup", async (req, res) => {
 });
 
 /**
- * Route     /signin
+ * Route     /login
  * Des       Login to existing account
  * Params    none
  * Access    Public
  * Method    POST
  */
-Router.post("/signin", async (req, res) => {
+Router.post("/login", async (req, res) => {
   try {
     //await ValidateSignin(req.body.credentials);
     const user = await UserModel.findByEmailAndPassword(req.body.credentials);
@@ -57,7 +57,6 @@ Router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    
     return res.redirect(
       `http://localhost:3000/google/${req.session.passport.user.token}`
     );

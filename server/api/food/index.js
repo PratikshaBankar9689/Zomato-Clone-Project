@@ -5,8 +5,6 @@ import { FoodModel } from "../../database/allModels";
 
 const Router = express.Router();
 
-
-
 /**
  * Route     /:_id
  * Des       Get food based on id
@@ -43,8 +41,6 @@ Router.get("/r/:_id", async (req, res) => {
     const foods = await FoodModel.find({
       restaurant: _id,
     });
-
-    // task: food not found return stmt
 
     return res.json({ foods });
   } catch (error) {
