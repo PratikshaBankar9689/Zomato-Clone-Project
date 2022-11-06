@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.methods.generateJwtToken = function () {
-  return jwt.sign({ user : this.toString()},"ZomatoApp");
+  return jwt.sign({ user: this._id.toString() },  process.env.JWTSECRET);
 };
 
 
@@ -64,4 +64,4 @@ UserSchema.pre("save", function (next) {
 });
 
 
-export const UserModel = mongoose.model("users", UserSchema);
+export const UserModel = mongoose.model("user", UserSchema);
