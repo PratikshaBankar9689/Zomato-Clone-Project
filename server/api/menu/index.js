@@ -39,7 +39,7 @@ Router.get("/image/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
 
-    const menuImages = await ImageModel.findById(_id);
+    const menuImages = await ImageModel.findById( _id );
 
     if (!menuImages) {
       return res.status(404).json({ message: "No menu images found." });
