@@ -5,14 +5,7 @@ import { RestaurantModel } from "../../database/allModels";
 
 const Router = express.Router();
 
-/**
- * Route     /
- * Des       Create new restaurant
- * Params    none
- * Access    Public
- * Method    POST
- */
-// Homework
+
 
 /**
  * Route     /
