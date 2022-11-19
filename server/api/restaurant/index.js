@@ -1,7 +1,7 @@
 import express from "express";
 
 import { RestaurantModel } from "../../database/allModels";
-//import { ValidateRestaurantCity, ValidateSearchString,} from "../../validation/restaurant.validation";
+import { ValidateRestaurantCity, ValidateSearchString,} from "../../validation/restaurant.validation";
 
 const Router = express.Router();
 
@@ -19,7 +19,7 @@ Router.get("/", async (req, res) => {
     // http://localhost:4000/restaurant/?city=ncr
     const { city } = req.query;
 
-    //await ValidateRestaurantCity(req.query);
+    await ValidateRestaurantCity(req.query);
 
     const restaurants = await RestaurantModel.find({ city });
     if (restaurants.length === 0) {

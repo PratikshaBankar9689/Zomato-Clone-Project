@@ -1,16 +1,16 @@
 import express from "express";
 import AWS from "aws-sdk";
-//import multer from "multer";
+import multer from "multer";
 
 import { ImageModel } from "../../database/allModels";
 
-//import { s3Upload } from "../../utils/s3";
+import { s3Upload } from "../../util/s3";
 
 const Router = express.Router();
 
-// multer configure
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage });
+ //multer configure
+ const storage = multer.memoryStorage();
+ const upload = multer({ storage });
 
 /**
  * Route     /:_id
@@ -36,60 +36,60 @@ Router.get("/:_id", async (req, res) => {
  * Access    Public
  * Method    POST
  */
-// Router.post("/", upload.single("file"), async (req, res) => {
-//   try {
-//     const file = req.file;
+Router.post("/", upload.single("file"), async (req, res) => {
+  try {
+    const file = req.file;
 
-//     const bucketOptions = {
-//       Bucket: "zomato-clone-10567",
-//       Key: file.originalname,
-//       Body: file.buffer,
-//       ContentType: file.mimetype,
-//       ACL: "public-read", // Access Control List
-//     };
+    const bucketOptions = {
+      Bucket: "zomato-clone-9689",
+      Key: file.originalname,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+      ACL: "public-read", // Access Control List
+    };
 
-//     const uploadImage = await s3Upload(bucketOptions);
+    const uploadImage = await s3Upload(bucketOptions);
 
-//     const dbUpload = await ImageModel.create({
-//       images: [
-//         {
-//           location: uploadImage.Location,
-//         },
-//       ],
-//     });
+    const dbUpload = await ImageModel.create({
+      images: [
+        {
+          location: uploadImage.Location,
+        },
+      ],
+    });
 
-//     return res.status(200).json({ dbUpload });
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// });
+    return res.status(200).json({ dbUpload });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
 
-// Router.post("/", upload.array("file", 4), async (req, res) => {
-//   try {
-//     const file = req.files;
+Router.post("/", upload.array("file", 4), async (req, res) => {
+  try {
+    const file = req.files;
 
-//     const bucketOptions = {
-//       Bucket: "zomato-clone-10567",
-//       Key: file.originalname,
-//       Body: file.buffer,
-//       ContentType: file.mimetype,
-//       ACL: "public-read", // Access Control List
-//     };
+    const bucketOptions = {
+      Bucket: "zomato-clone-9689",
+      Key: file.originalname,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+      ACL: "public-read", // Access Control List
+    };
 
-//     const uploadImage = await s3Upload(bucketOptions);
+    const uploadImage = await s3Upload(bucketOptions);
 
-//     // const dbUpload = await ImageModel.create({
-//     //   images: [
-//     //     {
-//     //       location: uploadImage.Location,
-//     //     },
-//     //   ],
-//     // });
+    const dbUpload = await ImageModel.create({
+      images: [
+        {
+          location: uploadImage.Location,
+        },
+      ],
+    });
 
-//     return res.status(200).json({ uploadImage });
-//   } catch (error) {
-//     return res.status(500).json({ error: error.message });
-//   }
-// });
+    return res.status(200).json({ uploadImage });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
 
 export default Router;
